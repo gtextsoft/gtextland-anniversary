@@ -33,7 +33,7 @@ const createRegistrationEmailHTML = (data) => {
         .header { background: linear-gradient(135deg, #2E7D32, #4CAF50); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
         .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
         .highlight { background: #FFD700; padding: 15px; border-radius: 8px; margin: 20px 0; }
-        .button { display: inline-block; background: #2E7D32; color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; margin: 20px 0; }
+        .button { display: inline-block; background: #2E7D32; color: white !important; padding: 15px 30px; text-decoration: none !important; border-radius: 25px; margin: 20px 0; }
         .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
         .info-box { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2E7D32; }
       </style>
