@@ -32,6 +32,17 @@ const RegistrationForm = () => {
         setIsSubmitted(true);
         reset();
         
+        // Auto-scroll to the registration section
+        setTimeout(() => {
+          const registrationSection = document.getElementById('registration');
+          if (registrationSection) {
+            registrationSection.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }
+        }, 100);
+        
         // Reset success message after 5 seconds
         setTimeout(() => setIsSubmitted(false), 5000);
       } else {

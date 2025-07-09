@@ -2,7 +2,12 @@ const nodemailer = require('nodemailer');
 
 // Create transporter
 const createTransporter = () => {
-  return nodemailer.createTransporter({
+  // Check if email credentials are configured
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    throw new Error('Email configuration missing. Please set EMAIL_USER and EMAIL_PASS environment variables.');
+  }
+  
+  return nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE || 'gmail',
     auth: {
       user: process.env.EMAIL_USER,
@@ -86,7 +91,7 @@ const createRegistrationEmailHTML = (data) => {
           </div>
           
           <p style="text-align: center;">
-            <a href="https://gtextland.com" class="button">Visit Our Website</a>
+            <a href="https://gtextland.com" class="button" style="color: white; text-decoration: none;">Visit Our Website</a>
           </p>
           
           <div class="footer">
@@ -180,6 +185,13 @@ const createVendorApplicationEmailHTML = (data) => {
 // Send registration confirmation email
 const sendRegistrationEmail = async (data) => {
   try {
+    // In development mode without email config, just log the registration
+    if (process.env.NODE_ENV === 'development' && (!process.env.EMAIL_USER || !process.env.EMAIL_PASS)) {
+      console.log('📧 [DEV MODE] Registration email would be sent to:', data.email);
+      console.log('📧 [DEV MODE] Email content:', createRegistrationEmailHTML(data));
+      return true; // Return success for development
+    }
+    
     const transporter = createTransporter();
     
     const mailOptions = {
@@ -238,6 +250,13 @@ const sendRegistrationEmail = async (data) => {
 // Send vendor application email
 const sendVendorApplicationEmail = async (data) => {
   try {
+    // In development mode without email config, just log the application
+    if (process.env.NODE_ENV === 'development' && (!process.env.EMAIL_USER || !process.env.EMAIL_PASS)) {
+      console.log('📧 [DEV MODE] Vendor application email would be sent to:', data.email);
+      console.log('📧 [DEV MODE] Email content:', createVendorApplicationEmailHTML(data));
+      return true; // Return success for development
+    }
+    
     const transporter = createTransporter();
     
     const mailOptions = {

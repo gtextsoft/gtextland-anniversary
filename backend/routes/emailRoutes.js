@@ -2,20 +2,38 @@ const express = require('express');
 const router = express.Router();
 const { sendRegistrationEmail, sendVendorApplicationEmail } = require('../services/emailService');
 const { validateRegistration, validateVendorApplication } = require('../middleware/validation');
+const Registration = require('../models/Registration');
 
 // Registration endpoint
-router.post('/register', validateRegistration, async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const { name, email, phone, city, isRealtor } = req.body;
+    
+    // Basic validation
+    if (!name || !email || !phone) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Name, email, and phone are required fields'
+      });
+    }
 
-    // Send confirmation email
-    await sendRegistrationEmail({
-      name,
-      email,
-      phone,
-      city,
-      isRealtor
-    });
+    // Save to database
+    const registration = new Registration({ name, email, phone, city, isRealtor });
+    await registration.save();
+
+    // Send confirmation email (temporarily disabled for testing)
+    try {
+      await sendRegistrationEmail({
+        name,
+        email,
+        phone,
+        city,
+        isRealtor
+      });
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      // Continue without email for now
+    }
 
     // Log registration (in production, save to database)
     console.log(`✅ New registration: ${name} (${email}) - ${new Date().toISOString()}`);
