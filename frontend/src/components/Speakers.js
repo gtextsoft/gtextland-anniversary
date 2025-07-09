@@ -55,7 +55,10 @@ const Speakers = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-2" style={{ gap: '2rem' }}>
+        <div className="grid grid-2" style={{ 
+          gap: '2rem',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(2, 1fr)'
+        }}>
           {speakers.map((speaker, index) => (
             <motion.div
               key={index}
@@ -66,67 +69,74 @@ const Speakers = () => {
               className="card"
               style={{ 
                 display: 'flex', 
-                gap: '1.5rem',
+                gap: window.innerWidth <= 768 ? '1rem' : '1.5rem',
                 alignItems: 'flex-start',
-                border: '2px solid var(--light-gray)'
+                border: '2px solid var(--light-gray)',
+                flexDirection: window.innerWidth <= 480 ? 'column' : 'row'
               }}
             >
               <div style={{
-                fontSize: '3rem',
+                fontSize: window.innerWidth <= 768 ? '2.5rem' : '3rem',
                 flexShrink: 0,
                 background: 'linear-gradient(135deg, var(--primary-green), var(--secondary-green))',
                 color: 'white',
                 borderRadius: '50%',
-                width: '80px',
-                height: '80px',
+                width: window.innerWidth <= 768 ? '60px' : '80px',
+                height: window.innerWidth <= 768 ? '60px' : '80px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                alignSelf: window.innerWidth <= 480 ? 'center' : 'flex-start'
               }}>
                 {speaker.image}
               </div>
               
               <div style={{ flex: 1 }}>
                 <h3 style={{ 
-                  fontSize: '1.3rem', 
+                  fontSize: window.innerWidth <= 768 ? '1.1rem' : '1.3rem', 
                   marginBottom: '0.5rem',
                   color: 'var(--primary-green)',
-                  fontWeight: '700'
+                  fontWeight: '700',
+                  textAlign: window.innerWidth <= 480 ? 'center' : 'left'
                 }}>
                   {speaker.name}
                 </h3>
                 
                 <p style={{ 
-                  fontSize: '1rem', 
+                  fontSize: window.innerWidth <= 768 ? '0.9rem' : '1rem', 
                   marginBottom: '0.25rem',
                   fontWeight: '600',
-                  color: 'var(--text-primary)'
+                  color: 'var(--text-primary)',
+                  textAlign: window.innerWidth <= 480 ? 'center' : 'left'
                 }}>
                   {speaker.title}
                 </p>
                 
                 <p style={{ 
-                  fontSize: '0.9rem', 
+                  fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem', 
                   marginBottom: '0.5rem',
                   color: 'var(--accent-gold)',
-                  fontWeight: '600'
+                  fontWeight: '600',
+                  textAlign: window.innerWidth <= 480 ? 'center' : 'left'
                 }}>
                   {speaker.company}
                 </p>
                 
                 <p style={{ 
-                  fontSize: '0.85rem', 
+                  fontSize: window.innerWidth <= 768 ? '0.75rem' : '0.85rem', 
                   marginBottom: '0.75rem',
                   color: 'var(--text-secondary)',
-                  fontStyle: 'italic'
+                  fontStyle: 'italic',
+                  textAlign: window.innerWidth <= 480 ? 'center' : 'left'
                 }}>
                   {speaker.expertise}
                 </p>
                 
                 <p style={{ 
-                  fontSize: '0.9rem', 
+                  fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem', 
                   color: 'var(--text-secondary)',
-                  lineHeight: '1.5'
+                  lineHeight: '1.5',
+                  textAlign: window.innerWidth <= 480 ? 'center' : 'left'
                 }}>
                   {speaker.bio}
                 </p>
@@ -134,7 +144,8 @@ const Speakers = () => {
                 <div style={{ 
                   display: 'flex', 
                   gap: '0.5rem', 
-                  marginTop: '1rem'
+                  marginTop: '1rem',
+                  justifyContent: window.innerWidth <= 480 ? 'center' : 'flex-start'
                 }}>
                   <button className="btn btn-secondary" style={{ 
                     padding: '8px 12px', 

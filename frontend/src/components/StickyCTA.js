@@ -37,12 +37,12 @@ const StickyCTA = () => {
             zIndex: 1000,
             background: 'linear-gradient(135deg, var(--primary-green), var(--secondary-green))',
             color: 'white',
-            padding: '1rem 2rem',
+            padding: window.innerWidth <= 768 ? '0.75rem 1.5rem' : '1rem 2rem',
             borderRadius: '50px',
             boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
             display: 'flex',
             alignItems: 'center',
-            gap: '1rem',
+            gap: window.innerWidth <= 768 ? '0.75rem' : '1rem',
             cursor: 'pointer',
             border: '2px solid var(--accent-gold)',
             maxWidth: '90vw',
@@ -52,19 +52,22 @@ const StickyCTA = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <FaTicketAlt style={{ fontSize: '1.2rem', color: 'var(--accent-gold)' }} />
+          <FaTicketAlt style={{ 
+            fontSize: window.innerWidth <= 768 ? '1rem' : '1.2rem', 
+            color: 'var(--accent-gold)' 
+          }} />
           <div>
             <div style={{ 
-              fontSize: '0.9rem', 
+              fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem', 
               fontWeight: '600',
-              whiteSpace: 'nowrap'
+              whiteSpace: window.innerWidth <= 480 ? 'normal' : 'nowrap'
             }}>
               🎫 Register Now — Free Ticket
             </div>
             <div style={{ 
-              fontSize: '0.8rem', 
+              fontSize: window.innerWidth <= 768 ? '0.7rem' : '0.8rem', 
               opacity: 0.8,
-              whiteSpace: 'nowrap'
+              whiteSpace: window.innerWidth <= 480 ? 'normal' : 'nowrap'
             }}>
               Limited seats available!
             </div>

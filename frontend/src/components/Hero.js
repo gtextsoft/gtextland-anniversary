@@ -31,8 +31,12 @@ const Hero = () => {
         zIndex: 1
       }} />
       
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <div className="grid grid-2" style={{ alignItems: 'center', gap: '4rem' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2, paddingBlock: '80px' }}>
+        <div className="grid grid-2" style={{ 
+          alignItems: 'center', 
+          gap: window.innerWidth <= 768 ? '2rem' : '4rem',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(2, 1fr)'
+        }}>
           
           {/* Left Content */}
           <motion.div
@@ -66,11 +70,12 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
               style={{
-                fontSize: '3.5rem',
+                fontSize: window.innerWidth <= 768 ? '2.5rem' : window.innerWidth <= 1024 ? '3rem' : '3.5rem',
                 fontWeight: '800',
                 color: 'white',
                 marginBottom: '1.5rem',
-                lineHeight: '1.2'
+                lineHeight: '1.2',
+                textAlign: window.innerWidth <= 768 ? 'center' : 'left'
               }}
             >
               The World's Largest Real Estate Event Is Coming!
@@ -81,10 +86,11 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
               style={{
-                fontSize: '1.3rem',
+                fontSize: window.innerWidth <= 768 ? '1.1rem' : '1.3rem',
                 color: 'rgba(255, 255, 255, 0.9)',
                 marginBottom: '2rem',
-                lineHeight: '1.6'
+                lineHeight: '1.6',
+                textAlign: window.innerWidth <= 768 ? 'center' : 'left'
               }}
             >
               Join <strong>5,000+ visionaries</strong> on October 4th to celebrate 10 years of Gtext Land & Homes. 
@@ -98,9 +104,10 @@ const Hero = () => {
               className="hero-stats"
               style={{
                 display: 'flex',
-                gap: '2rem',
+                gap: window.innerWidth <= 768 ? '1rem' : '2rem',
                 marginBottom: '2.5rem',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
+                justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'white' }}>
@@ -122,19 +129,30 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
               className="hero-cta"
-              style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
+              style={{ 
+                display: 'flex', 
+                gap: '1rem', 
+                flexWrap: 'wrap',
+                justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start'
+              }}
             >
               <button 
                 onClick={scrollToRegistration}
                 className="btn btn-gold"
-                style={{ fontSize: '1.1rem', padding: '18px 36px' }}
+                style={{ 
+                  fontSize: window.innerWidth <= 768 ? '1rem' : '1.1rem', 
+                  padding: window.innerWidth <= 768 ? '15px 25px' : '18px 36px'
+                }}
               >
                 🎫 Register Now — Free Ticket
               </button>
               <button 
                 onClick={() => document.getElementById('event-details').scrollIntoView({ behavior: 'smooth' })}
                 className="btn btn-secondary"
-                style={{ fontSize: '1.1rem', padding: '18px 36px' }}
+                style={{ 
+                  fontSize: window.innerWidth <= 768 ? '1rem' : '1.1rem', 
+                  padding: window.innerWidth <= 768 ? '15px 25px' : '18px 36px'
+                }}
               >
                 Learn More
               </button>
