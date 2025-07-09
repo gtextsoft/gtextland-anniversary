@@ -1,70 +1,261 @@
-# Getting Started with Create React App
+# Gtext Land & Homes 10th Anniversary - Full Stack Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A complete full-stack application for Gtext Land & Homes' 10th Anniversary celebration - "The World's Largest Real Estate Event" happening on October 4th, 2025.
 
-## Available Scripts
+## 🏗️ Project Structure
 
-In the project directory, you can run:
+```
+gtextannv/
+├── frontend/           # React frontend application
+│   ├── src/           # React source code
+│   ├── public/        # Static files
+│   └── package.json   # Frontend dependencies
+├── backend/           # Node.js backend server
+│   ├── routes/        # API routes
+│   ├── middleware/    # Express middleware
+│   ├── services/      # Email service
+│   └── package.json   # Backend dependencies
+└── package.json       # Root package.json (manages both)
+```
 
-### `npm start`
+## 🚀 Quick Start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. Install All Dependencies
+```bash
+npm run install-all
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. Set Up Environment Variables
+```bash
+# Copy backend environment template
+cp backend/env.example backend/.env
 
-### `npm test`
+# Edit backend/.env with your email credentials
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Start Both Frontend and Backend
+```bash
+npm run dev
+```
 
-### `npm run build`
+This will start:
+- **Frontend**: http://localhost:3000
+- **Backend**: http://localhost:5000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Frontend (React)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Features
+- **Modern UI/UX** with Gtext brand colors
+- **Responsive design** for all devices
+- **Interactive components** with Framer Motion
+- **Form validation** with React Hook Form
+- **Real-time countdown** to October 4th, 2025
+- **SEO optimized** with meta tags and schema markup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Components
+- **Hero Section** - Compelling headline and CTAs
+- **Event Details** - Comprehensive event information
+- **Countdown Timer** - Real-time countdown
+- **Registration Form** - User registration with validation
+- **Speakers Section** - Industry leaders showcase
+- **Sponsors Section** - Sponsor showcase
+- **Transportation Info** - BRT bus details
+- **Vendor Form** - Partnership applications
+- **Testimonials** - Social proof
+- **FAQ Section** - Common questions
+- **Footer** - Contact information
 
-### `npm run eject`
+### Running Frontend Only
+```bash
+npm run frontend
+# or
+cd frontend && npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🔧 Backend (Node.js + Express)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Features
+- **Email Service** using Nodemailer
+- **Form Validation** with comprehensive rules
+- **Security** with rate limiting and CORS
+- **Error Handling** with detailed logging
+- **Beautiful Email Templates** with HTML
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### API Endpoints
+- `POST /api/email/register` - Event registration
+- `POST /api/email/vendor-application` - Vendor applications
+- `GET /api/health` - Server health check
+- `POST /api/email/test-email` - Test emails (development)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Running Backend Only
+```bash
+npm run backend
+# or
+cd backend && npm run dev
+```
 
-## Learn More
+## 📧 Email Configuration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Gmail Setup (Recommended)
+1. Enable 2-factor authentication
+2. Generate App Password:
+   - Google Account → Security → 2-Step Verification → App passwords
+   - Generate for "Mail"
+3. Update `backend/.env`:
+   ```env
+   EMAIL_SERVICE=gmail
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASS=your-app-password
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Other Email Services
+```env
+# Outlook/Hotmail
+EMAIL_SERVICE=outlook
+EMAIL_USER=your-email@outlook.com
+EMAIL_PASS=your-password
 
-### Code Splitting
+# Custom SMTP
+EMAIL_HOST=smtp.yourdomain.com
+EMAIL_PORT=587
+EMAIL_USER=your-email@yourdomain.com
+EMAIL_PASS=your-password
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🧪 Testing
 
-### Analyzing the Bundle Size
+### Test Registration
+```bash
+curl -X POST http://localhost:5000/api/email/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Test User",
+    "email": "test@example.com",
+    "phone": "+234 801 234 5678",
+    "city": "Lagos",
+    "isRealtor": "yes"
+  }'
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Test Vendor Application
+```bash
+curl -X POST http://localhost:5000/api/email/vendor-application \
+  -H "Content-Type: application/json" \
+  -d '{
+    "businessName": "Test Business",
+    "contactPerson": "Test Contact",
+    "email": "test@business.com",
+    "phone": "+234 801 234 5678",
+    "vendorType": "food",
+    "message": "Test application"
+  }'
+```
 
-### Making a Progressive Web App
+## 🚀 Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Frontend Deployment
+```bash
+npm run build
+```
+Deploy the `frontend/build` folder to:
+- **Vercel**: `vercel`
+- **Netlify**: Connect repository
+- **AWS S3**: Upload build files
 
-### Advanced Configuration
+### Backend Deployment
+Deploy the `backend` folder to:
+- **Heroku**: `git push heroku main`
+- **Railway**: Connect repository
+- **DigitalOcean**: Deploy Node.js app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Environment Variables for Production
+```env
+NODE_ENV=production
+PORT=5000
+FRONTEND_URL=https://yourdomain.com
+EMAIL_SERVICE=gmail
+EMAIL_USER=events@gtextland.com
+EMAIL_PASS=your-app-password
+ADMIN_EMAIL=admin@gtextland.com
+```
 
-### Deployment
+## 🔒 Security Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Rate Limiting**: 100 requests per 15 minutes per IP
+- **CORS Protection**: Configured for frontend domain
+- **Input Validation**: Comprehensive form validation
+- **Input Sanitization**: Clean and sanitize all inputs
+- **Helmet**: Security headers
+- **Error Handling**: No sensitive information in error responses
 
-### `npm run build` fails to minify
+## 📊 Monitoring
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Health Check
+```bash
+curl http://localhost:5000/api/health
+```
+
+### Logs
+- Frontend: Check browser console
+- Backend: Check terminal output for requests and errors
+
+## 🔧 Customization
+
+### Email Templates
+Edit templates in `backend/services/emailService.js`:
+- `createRegistrationEmailHTML()` - Registration confirmation
+- `createVendorApplicationEmailHTML()` - Vendor application confirmation
+
+### Styling
+Edit styles in `frontend/src/App.css`:
+- Color variables in `:root`
+- Component-specific styles
+- Responsive breakpoints
+
+### Content
+Update content in respective component files:
+- Event details in `frontend/src/components/EventDetails.js`
+- Speakers in `frontend/src/components/Speakers.js`
+- Sponsors in `frontend/src/components/Sponsors.js`
+
+## 🐛 Troubleshooting
+
+### Email Not Sending
+1. Check email credentials in `backend/.env`
+2. Verify 2FA is enabled (for Gmail)
+3. Check app password is correct
+4. Test with different email service
+
+### CORS Errors
+1. Verify `FRONTEND_URL` in `backend/.env`
+2. Check frontend is running on correct port
+3. Ensure CORS configuration matches frontend URL
+
+### Form Validation Errors
+1. Check request body format
+2. Verify all required fields are present
+3. Ensure data types are correct
+
+## 📞 Support
+
+For technical support:
+- Email: tech@gtextland.com
+- Phone: +234 801 234 5678
+
+## 📄 License
+
+This project is proprietary to Gtext Land & Homes.
+
+---
+
+**Built with ❤️ for Gtext Land & Homes 10th Anniversary Celebration**
+
+### 🎯 Key Features Summary
+- ✅ **Frontend**: Modern React app with beautiful UI
+- ✅ **Backend**: Node.js server with email functionality
+- ✅ **Forms**: Registration and vendor applications
+- ✅ **Emails**: Beautiful confirmation emails
+- ✅ **Security**: Rate limiting, validation, CORS
+- ✅ **Responsive**: Works on all devices
+- ✅ **SEO**: Optimized for search engines
+- ✅ **Ready to Deploy**: Production-ready code 
