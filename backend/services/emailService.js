@@ -91,7 +91,7 @@ const createRegistrationEmailHTML = (data) => {
           </div>
           
           <p style="text-align: center;">
-            <a href="https://gtextland.com" class="button" style="color: white; text-decoration: none;">Visit Our Website</a>
+            <a href="https://gtextland.com" class="button" style="color: white !important; text-decoration: none !important;">Visit Our Website</a>
           </p>
           
           <div class="footer">
